@@ -8,7 +8,7 @@ model_path = Path("asset/room/chairCushion.obj")
 class Chair(Entity):
     def __init__(self, position=(0, 0, 0), rotation=(0, 0, 0), scale=1):
         super().__init__(
-            model=str(model_path),  # pathlib 객체를 문자열로 변환
+            model=str(model_path),
             position=position,
             rotation=rotation,
             collider="box",

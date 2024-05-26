@@ -1,4 +1,5 @@
 from ursina import Entity
+from gravity import AutoGravityEntity
 
 
 class InventoryItem(Entity):

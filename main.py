@@ -1,6 +1,7 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 from ursina.shaders import basic_lighting_shader
+from pathlib import Path
 
 from player import Player
 from lock import Lock
@@ -10,6 +11,7 @@ from room.chair import Chair
 
 app = Ursina()
 
+# application.asset_folder = Path("asset")
 Entity.default_shader = basic_lighting_shader
 #
 setup_room()
