@@ -1,9 +1,13 @@
 from ursina import *
+
+app = Ursina()
+
 from ursina.prefabs.first_person_controller import FirstPersonController
 from ursina.shaders import basic_lighting_shader
 from pathlib import Path
 
 from player import Player
+
 from ursina.prefabs.first_person_controller import FirstPersonController
 
 from lock import Lock
@@ -15,11 +19,11 @@ from escape_item.escape_item_setting import setup_escape_item
 
 app = Ursina()
 
-# player = Player()
+player = Player()
 # application.asset_folder = Path("asset")
 Entity.default_shader = basic_lighting_shader
 setup_lighting()
-player = FirstPersonController(y=2, origin_y=-0.5)
+# player = FirstPersonController(y=2, origin_y=-0.5)
 # setting Enttity
 setup_room()
 setup_escape_item()
