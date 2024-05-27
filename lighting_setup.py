@@ -5,8 +5,6 @@ from ursina.shaders import lit_with_shadows_shader
 
 def setup_lighting():
 
-    pivot = Entity()
-
     # main_light = PointLight(
     #     parent=pivot,
     #     position=(0, 10, 0),

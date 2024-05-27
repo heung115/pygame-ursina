@@ -2,6 +2,8 @@
 from inventory_item import InventoryItem
 from player import Player
 
+player = Player()
+
 
 class Lock(InventoryItem):
     def __init__(self, position=(0, 0, 0), scale=(1, 1, 1), rotation=(0, 0, 0)):
@@ -15,7 +17,7 @@ class Lock(InventoryItem):
             texture_scale=(10, 3),
             name="Padlock",
         )
-        self.player = Player()
+        self.player = player
 
     def input(self, key):
         if key == "right mouse down" and self.hovered:

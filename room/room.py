@@ -6,6 +6,7 @@ from room.door import Door
 from room.book_case import BookCase
 from room.bedBunk import BedBunk
 from room.desk import Desk
+from room.rug_square import RugSquare
 
 wall_thickness = 0.2
 wall_height = 10
@@ -41,5 +42,10 @@ def setup_room(roomSize=10):
     door = Door(position=(0, 0, -9.5), scale=(4, 4, 1))
     book_case = BookCase(position=(5, 0, 5), scale=(5), rotation=(0, 0, 0))
     bed_bunk = BedBunk(position=(-9.6, 0, 4), scale=(5), rotation=(0, 0, 0))
+
     desk = Desk(position=(-5, 0, 8), scale=(5), rotation=(0, 0, 0))
-    door.shadow = True
+    chair = Chair(position=(-5, 0, 5), scale=(5), rotation=(0, 0, 0))
+
+    rug_square = RugSquare(
+        position=(0.5, 0.1, 0.5), scale=(10, 10, 10), rotation=(0, 0, 0)
+    )

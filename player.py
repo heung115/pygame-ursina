@@ -8,16 +8,18 @@ class Player(FirstPersonController):
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(Player, cls).__new__(cls, *args, **kwargs)
+            cls._instance._initialized = False
         return cls._instance
 
     def __init__(self, **kwargs):
-        if not hasattr(self, "initialized"):
-            super().__init__(**kwargs)
-            self.inventory = Inventory(capacity=5)
-            self.initialized = True
+        if self._initialized:
+            return
+        super().__init__(**kwargs)
+        self.inventory = Inventory(capacity=5)
+        self.inventory.create_ui()  # 인벤토리 UI 생성
+        self._initialized = True
 
     def on_collect(self, item):
-        """아이템 수집 로직 처리"""
         print(f"Collecting {item.name}")
         if len(self.inventory.items) < self.inventory.capacity:
             self.inventory.add_item(item)
