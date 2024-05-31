@@ -1,4 +1,4 @@
-from ursina import Entity, Button, camera, color
+from ursina import *
 
 
 class Inventory:
@@ -46,9 +46,28 @@ class Inventory:
                 scale_x=0.08,
                 scale_y=0.1,
                 icon="white_cube",
-                text_origin=(0, 0),  # 텍스트를 가운데로 설정
+                text_origin=(0, 0),
                 texture="asset/UI/panel-004.png",
             )
             btn.text_entity.color = color.black
             btn.text_entity.z = -1  # 텍스트를 버튼보다 앞으로 설정
             self.ui_slots.append(btn)
+
+    def use_item(self, index):
+        if 0 <= index < len(self.items):
+            item = self.items[index]
+            if hasattr(item, "use"):
+                item.use()
+                print(f"Used {item.name}.")
+            else:
+                print(f"No use function for {item.name}.")
+        else:
+            print("No item in this slot.")
+
+    def enable_ui(self):
+        for slot in self.ui_slots:
+            slot.enabled = True
+
+    def disable_ui(self):
+        for slot in self.ui_slots:
+            slot.enabled = False

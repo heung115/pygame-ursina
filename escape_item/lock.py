@@ -22,27 +22,12 @@ class Lock(Entity):
         self.lock_num = lock_num
         self.is_locked = True
 
-    def input(self, key):
-        if key == "right mouse down" and mouse.hovered_entity == self:
-
-            if player.inventory.has_item("key"):
-                self.unlock(player.inventory.items["key"])
-            else:
-                print("No key in inventory.")
-                self.display_message("No key in inventory.")
-
-    def unlock(self, key_number):
+    def unlock(self):
         if self.is_locked:
-            if key_number == self.lock_num:
-                self.is_locked = False
-                print("Lock has been unlocked!")
-                self.disable()
-            else:
-                print("Wrong key! Lock is still locked.")
-        else:
-            print("Lock is already unlocked.")
+            self.is_locked = False
+            self.disable()
+            self.display_message(3)
 
-
-# class CustomLock(Lock):
-#     def __init__(self, model, **kwargs):
-#         super().__init__(model, **kwargs)
+    def display_message(self, duration=1):
+        message = Text(test="Unlocked.", x=0, y=0, scale=2, color=color.white)
+        invoke(message.disable, delay=duration)
