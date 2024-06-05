@@ -42,7 +42,7 @@ def setup_escape_item():
     key_safe_box.enabled = False
 
     key03 = RemoteControl(
-        position=(4, 5.3, 9), rotation=(0, 0, 0), scale=0.006, key_num=3, name="R.C"
+        position=(20, 0, 9), rotation=(0, 0, 0), scale=0.006, key_num=3, name="R.C"
     )
     lock = Lock1(
         position=(5.9, 2.3, 8.95),
