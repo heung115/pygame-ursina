@@ -1,4 +1,8 @@
 from ursina import *
+from menu.text_texture import create_text_texture
+from player import Player
+
+player = Player()
 
 def pause_menu_ui(show_pause_menu=False):
     pause_menu = Entity(parent=camera.ui, enabled=show_pause_menu)
@@ -17,13 +21,16 @@ def pause_menu_ui(show_pause_menu=False):
         scale=(1.5, 0.8),
     )
 
-    pause_text = Text(
+    pause_text_texture = create_text_texture('Pause', 256)
+    pause_text_texture_path = 'menu/pause_text.png'
+    pause_text_texture.save(pause_text_texture_path)
+
+    pause_text_entity = Entity(
         parent=pause_menu,
-        text='Pause',
-        scale= 4,
-        origin=(0, 0),
+        model='quad',
+        texture=pause_text_texture_path,
+        scale=(0.3, 0.3),
         position=(-0.3, 0),
-        color=color.light_gray,
     )
 
     # 게임으로 돌아가기 버튼
@@ -51,8 +58,10 @@ def pause_menu_ui(show_pause_menu=False):
 # 게임으로 돌아가기
 def resume_game(pause_menu):
     pause_menu.disable() # pause_menu 비활성화
-    mouse.locked = True
-    mouse.visible = False # 마우스 감추기
+    player.inventory.enable_ui()
+    player.on_enable()
+    # mouse.locked = True
+    # mouse.visible = False # 마우스 감추기
 
 # 게임 종료
 def quit_game():

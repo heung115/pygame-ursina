@@ -10,7 +10,8 @@ class Inventory:
     def add_item(self, item):
         if len(self.items) < self.capacity:
             self.items.append(item)
-            print(f"Added {item} to inventory.")
+            popup_text = Text(f"Added {item} to inventory.")
+            destroy(popup_text, delay=1)
             self.update_ui()
         else:
             print("Inventory is full.")
@@ -31,8 +32,12 @@ class Inventory:
         for i, slot in enumerate(self.ui_slots):
             if i < len(self.items):
                 slot.text = self.items[i].name
+                slot.icon = self.items[i].icon_path
+                slot.texture = self.items[i].icon_path
+
             else:
                 slot.text = ""
+                slot.icon = "white_cube"
 
     def create_ui(self):
         for i in range(self.capacity):
@@ -57,6 +62,7 @@ class Inventory:
         if 0 <= index < len(self.items):
             item = self.items[index]
             if hasattr(item, "use"):
+                print(f"item name : {item}.")
                 item.use()
                 print(f"Used {item.name}.")
             else:
@@ -71,3 +77,6 @@ class Inventory:
     def disable_ui(self):
         for slot in self.ui_slots:
             slot.enabled = False
+
+    def get_itme(self, index):
+        return self.items[index]

@@ -37,8 +37,8 @@ def start_game(main_menu):
     main_menu.disable()
     player.inventory.enable_ui()
     player.on_enable()
-    mouse.locked = True
-    mouse.visible = False
+    # mouse.locked = True
+    # mouse.visible = False
 
 
 def quit_game():

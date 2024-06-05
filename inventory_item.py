@@ -17,6 +17,9 @@ class InventoryItem(Entity, ABC, metaclass=CommonMeta):
             player.inventory.add_item(self)
             self.disable()
 
+    def get_info(self):
+        print(f"item name : {self.name}.")
+
     @abstractmethod
     def use(self):
         pass

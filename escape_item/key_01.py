@@ -10,11 +10,14 @@ player = Player()
 
 
 class Key1(Key):
-    def __init__(self, position=(0, 0, 0), rotation=(0, 0, 0), scale=1, key_num=0):
+    def __init__(self, position, rotation, scale, key_num, name, **kwargs):
         super().__init__(
             model=str(model_path),
             position=position,
             rotation=rotation,
             scale=scale,
             key_num=key_num,
+            name=name,
+            **kwargs
         )
+        self.icon_path = "asset/icon/key.png"

@@ -1,5 +1,5 @@
 from ursina import *
-
+from menu.text_texture import create_text_texture
 
 def escape_success_ui(escape_time_seconds, show_success_menu=False):
     success_menu = Entity(parent=camera.ui,  enabled=show_success_menu)
@@ -11,13 +11,18 @@ def escape_success_ui(escape_time_seconds, show_success_menu=False):
         scale=(2, 1),
     )
 
-    success_message = Text(
+    end_text_texture = create_text_texture('Escape Success!',500)
+    end_text_texture_path = 'menu/end_text.png'
+    end_text_texture.save(end_text_texture_path)
+
+    end_text_entity = Entity(
         parent=success_menu,
-        text="Escape Success!",
+        model='quad',
+        texture=end_text_texture_path,
+        scale=(1, 1),
         origin=(0, 0),
         position=(0, 0.1),
-        scale=3,
-        color=color.lime,
+        color=color.lime
     )
 
     time_message = Text(

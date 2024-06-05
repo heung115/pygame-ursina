@@ -2,20 +2,18 @@ from ursina import *
 
 app = Ursina()
 
-from ursina.prefabs.first_person_controller import FirstPersonController
 from ursina.shaders import basic_lighting_shader
 from pathlib import Path
-import time
 from player import Player
-
-from ursina.prefabs.first_person_controller import FirstPersonController
 
 from room.room import setup_room
 from lighting_setup import setup_lighting
-from room.chair import Chair
-from escape_item.lock_01 import Lock1
 from escape_item.escape_item_setting import setup_escape_item
+
+# import menu
 from menu.main_menu import main_menu_ui
+from menu.pause_menu import pause_menu_ui
+from menu.escape_success import escape_success_ui
 
 
 player = Player()
@@ -26,17 +24,18 @@ application.blender_paths["default"] = (
     "/Applications/Blender.app/Contents/MacOS/Blender"
 )
 application.fonts_folder = Path("asset/fonts")
-Entity.default_shader = basic_lighting_shader
+# Entity.default_shader = basic_lighting_shader
 setup_lighting()
 
 # setting Enttity
-setup_room()
-setup_escape_item()
+item_entity = setup_escape_item()
+setup_room(item_entity)
 
 
 def update():
     # 키 입력에 따라 인벤토리의 아이템 사용
     if held_keys["1"]:
+        # player.update_hand_entity(player.inventory.get_itme(0))
         player.inventory.use_item(0)
     if held_keys["2"]:
         player.inventory.use_item(1)
@@ -50,6 +49,19 @@ def update():
         player.inventory.disable_ui()
     if held_keys["l"]:
         player.inventory.enable_ui()
+    if held_keys["p"]:
+        print("=====================================")
+        print(player.inventory.list_items())
+    if held_keys["escape"]:
+        pause_menu_ui(True)
+        mouse.locked = False
+        mouse.visible = True
+
+
+def escape_success():
+    escape_success_ui(0, True)  # 탈출 문 오픈 시 escape_success_ui 활성화
+    mouse.locked = False
+    mouse.visible = True
 
 
 app.run()

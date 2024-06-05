@@ -20,7 +20,7 @@ class Player(FirstPersonController):
         self.inventory.create_ui()  # 인벤토리 UI 생성
         self._initialized = True
         self.allow_movement = True
-
+        self.hand_entity = None
         if not hasattr(self, "camera"):
             self.camera = camera
 
@@ -50,3 +50,16 @@ class Player(FirstPersonController):
 
     def toggle_movement(self):  # 움직임 허용/비허용 전환 메서드
         self.allow_movement = not self.allow_movement
+
+    # def update_hand_entity(self, item):
+    #     if self.hand_entity == None:
+    #         item.enable()
+    #         self.hand_entity = duplicate(
+    #             item,
+    #             parent=camera,
+    #             rotation=(0, 0, 0),
+    #             scale=()
+    #             position=Vec3(0.5, 0, 0.5),
+    #             origin_z=-0.5,
+    #         )
+    #         item.disable()
