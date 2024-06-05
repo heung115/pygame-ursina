@@ -1,4 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
+from pathlib import Path
+
+font_path = Path("asset/font/arial.ttf")
 
 
 # 지정하는 텍스트 이미지 생성
@@ -6,7 +9,7 @@ def create_text_texture(text, size, font_size=50):
     # 투명 배경 이미지 생성
     image = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype("arial.ttf", font_size)
+    font = ImageFont.truetype(font_path, font_size)
 
     # 텍스트 바운딩 박스 계산
     text_bbox = draw.textbbox((0, 0), text, font=font)

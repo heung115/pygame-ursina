@@ -1,5 +1,8 @@
 from ursina import *
 from pathlib import Path
+from menu.escape_success import escape_success_ui
+
+# from main import escape_success
 
 model_path = Path("asset/room/doorway.obj")
 
@@ -23,3 +26,9 @@ class Door(Entity):
                 "rotation_y", open_rotation.y, duration=2, curve=curve.linear
             )  # 2초동안 오픈 애니메이션 적용
             print("Door opened!")
+            invoke(self.escape_success, delay=2)
+
+    def escape_success(self):
+        escape_success_ui(0, True)  # 탈출 문 오픈 시 escape_success_ui 활성화
+        mouse.locked = False
+        mouse.visible = True

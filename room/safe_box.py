@@ -1,19 +1,20 @@
 from ursina import *
 from pathlib import Path
 
-model_path = Path("asset/room/safebox_OBJ.obj")
+model_path_close = Path("asset/escape_item/safe_close.obj")
+model_path_open = Path("asset/escape_item/safe_open.obj")
 
 
 class SafeBox(Entity):
     def __init__(self, position, scale, rotation, key_to_show):
         super().__init__(
-            model=str(model_path),
+            model=str(model_path_close),
             scale=scale,
             position=(-5.5, 1.9, 9),
             collider="box",
             texture_scale=(10, 10),
-            color=color.dark_gray,
             rotation=rotation,
+            color=color.dark_gray,
         )
         self.is_locked = True
         self.key_to_show = key_to_show
@@ -58,6 +59,8 @@ class SafeBox(Entity):
         self.password_input.disable()
         self.submit_button.disable()
         print("SafeBox is unlocked!")
+
+        self.model = str(model_path_open)
         self.key_to_show.enabled = True
 
         mouse.locked = True

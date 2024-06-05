@@ -60,8 +60,6 @@ def setup_room(item_entity):
     floor = Floor(position=(-10, 0, -10), scale=(20, 1, 20))
     setup_wall()
 
-    door = Door(position=(-2, 0, -9.9), scale=(6, 6, 2))
-    door_open = Door_open(position=(-2, 0, -9.95), scale=(6, 6, 2))
     book_case = BookCase(position=(3, 0, 8.7), scale=(5), rotation=(0, 0, 0))
     bed_bunk = BedBunk(position=(-9.6, 0, 4), scale=(5), rotation=(0, 0, 0))
 
@@ -118,7 +116,6 @@ def setup_room(item_entity):
 
     return {
         "floor": floor,
-        "door": door,
         "book_case": book_case,
         "bed_bunk": bed_bunk,
         "desk": desk,

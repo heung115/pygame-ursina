@@ -1,11 +1,13 @@
 from ursina import *
 from escape_item.lock_01 import Lock1
+from escape_item.door_lock import DoorLock
 from escape_item.key_01 import Key1
 from escape_item.book import Book
 from escape_item.key_safe_box import Key_safe_box
 from escape_item.frame import Frame
 from room.computer import Computer
-
+from room.door import Door
+from room.door_open import Door_open
 from escape_item.remote_control import RemoteControl
 from display_image.image_01 import Image_01
 from display_image.image_02 import Image_02
@@ -29,15 +31,18 @@ def setup_image():
 def setup_escape_item():
 
     images = setup_image()
-
-    lock = Lock1(position=(0.5, 2.6, -9.7), rotation=(0, 90, 0), scale=0.7, lock_num=1)
+    door = Door(position=(-2, 0, -9.9), scale=(6, 6, 2))
+    door_open = Door_open(position=(-2, 0, -9.95), scale=(6, 6, 2))
+    lock = DoorLock(
+        position=(0.5, 2.6, -9.7), rotation=(0, 90, 0), scale=0.7, lock_num=1, Door=door
+    )
     key_safe_box = Key_safe_box(
         position=(-5.5, 2.3, 8.2), rotation=(0, 0, 0), scale=0.005, key_num=1
     )
     key_safe_box.enabled = False
 
     key03 = RemoteControl(
-        position=(4, 5.3, 9), rotatison=(0, 0, 0), scale=0.006, key_num=3, name="R.C"
+        position=(4, 5.3, 9), rotation=(0, 0, 0), scale=0.006, key_num=3, name="R.C"
     )
     lock = Lock1(
         position=(5.9, 2.3, 8.95),

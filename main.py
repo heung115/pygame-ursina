@@ -13,7 +13,6 @@ from escape_item.escape_item_setting import setup_escape_item
 # import menu
 from menu.main_menu import main_menu_ui
 from menu.pause_menu import pause_menu_ui
-from menu.escape_success import escape_success_ui
 
 
 player = Player()
@@ -56,12 +55,6 @@ def update():
         pause_menu_ui(True)
         mouse.locked = False
         mouse.visible = True
-
-
-def escape_success():
-    escape_success_ui(0, True)  # 탈출 문 오픈 시 escape_success_ui 활성화
-    mouse.locked = False
-    mouse.visible = True
 
 
 app.run()
