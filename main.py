@@ -19,9 +19,11 @@ player = Player()
 main_menu_ui()  # main_menu 활성화
 player.inventory.disable_ui()
 player.on_disable()
+
 application.blender_paths["default"] = (
     "/Applications/Blender.app/Contents/MacOS/Blender"
 )
+
 application.fonts_folder = Path("asset/fonts")
 # Entity.default_shader = basic_lighting_shader
 setup_lighting()
@@ -29,10 +31,11 @@ setup_lighting()
 # setting Enttity
 item_entity = setup_escape_item()
 setup_room(item_entity)
+pause_state = False
 
 
 def update():
-    # 키 입력에 따라 인벤토리의 아이템 사용
+    global pause_state
     if held_keys["1"]:
         # player.update_hand_entity(player.inventory.get_itme(0))
         player.inventory.use_item(0)
@@ -49,9 +52,9 @@ def update():
     if held_keys["l"]:
         player.inventory.enable_ui()
     if held_keys["p"]:
-        print("=====================================")
         print(player.inventory.list_items())
-    if held_keys["escape"]:
+    if held_keys["escape"] and not pause_state:
+        pause_state = True
         pause_menu_ui(True)
         mouse.locked = False
         mouse.visible = True

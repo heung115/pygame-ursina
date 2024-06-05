@@ -112,7 +112,7 @@ def setup_room(item_entity):
     chair_desk = ChairDesk(position=(7, 0, 7), scale=(5), rotation=(0, 180, 0))
     cabinet_bed = CabinetBed(position=(5, 1.8, 9), scale=(5), rotation=(0, 0, 0))
 
-    # celling_fan = Ceiling_Fan(position=(0, 10.5, 0), scale=12, rotation=(0, 0, 0))
+    celling_fan = Ceiling_Fan(position=(0, 10.5, 0), scale=12, rotation=(0, 0, 0))
 
     return {
         "floor": floor,
