@@ -12,6 +12,7 @@ from escape_item.remote_control import RemoteControl
 from display_image.image_01 import Image_01
 from display_image.image_02 import Image_02
 from display_image.image_03 import Image_03
+from display_image.image_04 import Image_04
 
 
 def setup_image():
@@ -20,11 +21,13 @@ def setup_image():
 
     image02 = Image_02()
     image03 = Image_03()
-
+    image04 = Image_04()
+    image04.hide_image()
     return {
         "image01": image01,
         "image02": image02,
         "image03": image03,
+        "image04": image04,
     }
 
 
@@ -59,7 +62,7 @@ def setup_escape_item():
         position=(-3.5, 1.93, 9),
         rotation=(0, 0, 0),
         scale=10,
-        image=images["image01"],
+        image=images["image04"],
     )
 
     frame = Frame(position=(9.8, 2, -1), rotation=(180, -90, 180), scale=2)
